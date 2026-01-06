@@ -5,6 +5,8 @@ from catboost import CatBoostClassifier
 import matplotlib.pyplot as plt
 import sys
 import catboost
+import os
+from catboost import CatBoostClassifier, Pool
 
 st.write("Python:", sys.version)
 st.write("CatBoost:", catboost.__version__)
@@ -19,6 +21,22 @@ st.set_page_config(
     page_icon="🏥",
     layout="centered"
 )
+
+
+
+# ============================================================
+# LOAD FEATURE METADATA (CRITICAL)
+# ============================================================
+
+BASE_DIR = os.path.dirname(__file__)
+
+with open(os.path.join(BASE_DIR, "feature_metadata.json"), "r") as f:
+    metadata = json.load(f)
+
+FEATURE_COLUMNS = metadata["feature_columns"]
+CAT_FEATURES = metadata["cat_features"]
+
+
 
 # ============================================================
 # LOAD MODEL
@@ -96,23 +114,34 @@ blood_transfusion = yes_no("Blood transfusion services available")
 
 if st.button("🔍 Predict Operational Capacity"):
     
-    input_data = pd.DataFrame({
-        "health_district": [health_district],
-        "gender_fosa_manager": [gender_fosa_manager],
-        "qualification_fosa_manager": [qualification_fosa_manager],
-        "childbirth_services": [childbirth_services],
-        "pmtct_services": [pmtct_services],
-        "prenatal_care_services": [prenatal_care_services],
-        "vaccination_services": [vaccination_services],
-        "family_planning_services": [family_planning_services],
-        "blood_transfusion": [blood_transfusion],
-    })
+    user_inputs = {
+        "health_district": health_district,
+        "gender_fosa_manager": gender_fosa_manager,
+        "qualification_fosa_manager": qualification_fosa_manager,
+        "childbirth_services": childbirth_services,
+        "pmtct_services": pmtct_services,
+        "prenatal_care_services": prenatal_care_services,
+        "vaccination_services": vaccination_services,
+        "family_planning_services": family_planning_services,
+        "blood_transfusion": blood_transfusion,
+    }
 
-    # Apply same preprocessing
+
+     # 🚨 CRITICAL: enforce SAME order as training
+    input_data = pd.DataFrame(
+        [[user_inputs[col] for col in FEATURE_COLUMNS]],
+        columns=FEATURE_COLUMNS
+    )
+
+     # CatBoost expects strings for categorical vars
     input_data = input_data.fillna("Missing").astype(str)
 
-    prob = model.predict_proba(input_data)[0, 1]
-    pred = model.predict(input_data)[0]
+    pool = Pool(
+        input_data,
+        cat_features=CAT_FEATURES
+    )
+    prob = model.predict_proba(pool)[0, 1]
+    pred = model.predict(pool)[0]
 
     st.divider()
     st.subheader("Prediction Result")
