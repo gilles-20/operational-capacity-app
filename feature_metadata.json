@@ -1,0 +1,1 @@
+{"feature_columns": ["health_district", "category_fosa", "status_fosa", "gender_fosa_manager", "qualification_fosa_manager", "qualification_respondent", "gender_respondent", "childbirth_services", "pmtct_services", "prenatal_care_services", "vaccination_services", "family_planning_services", "blood_transfusion"], "cat_features": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
