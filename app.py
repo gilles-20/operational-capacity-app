@@ -3,6 +3,12 @@ import pandas as pd
 import numpy as np
 from catboost import CatBoostClassifier
 import matplotlib.pyplot as plt
+import sys
+import catboost
+
+st.write("Python:", sys.version)
+st.write("CatBoost:", catboost.__version__)
+
 
 # ============================================================
 # CONFIG
