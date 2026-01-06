@@ -88,6 +88,10 @@ category_fosa = st.selectbox(
     ["4", "5", "6"]
 )
 
+status_fosa = st.selectbox(
+    "Status of FOSA",
+    ["Audience", "Confessional prvate", "Private secular"]
+)
 gender_fosa_manager = st.radio(
     "Gender of FOSA Manager",
     ["Male", "Feminine"]
@@ -122,6 +126,7 @@ if st.button("🔍 Predict Operational Capacity"):
     user_inputs = {
         "health_district": health_district,
         "category_fosa":category_fosa,
+        "status_fosa":status_fosa,
         "gender_fosa_manager": gender_fosa_manager,
         "qualification_fosa_manager": qualification_fosa_manager,
         "childbirth_services": childbirth_services,
