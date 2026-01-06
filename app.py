@@ -102,6 +102,12 @@ qualification_fosa_manager = st.selectbox(
     ["IDE", "MD", "TMS", "Other"]
 )
 
+
+qualification_respondent = st.selectbox(
+    "Qualification of Respondent",
+    ["IDE", "MD", "TMS", "Other"]
+)
+
 st.subheader("Service Availability")
 
 def yes_no(label):
@@ -129,6 +135,7 @@ if st.button("🔍 Predict Operational Capacity"):
         "status_fosa":status_fosa,
         "gender_fosa_manager": gender_fosa_manager,
         "qualification_fosa_manager": qualification_fosa_manager,
+        "qualification_respondent":qualification_respondent,
         "childbirth_services": childbirth_services,
         "pmtct_services": pmtct_services,
         "prenatal_care_services": prenatal_care_services,
