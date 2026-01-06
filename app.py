@@ -7,7 +7,7 @@ import sys
 import catboost
 import os
 from catboost import CatBoostClassifier, Pool
-
+import json
 st.write("Python:", sys.version)
 st.write("CatBoost:", catboost.__version__)
 
