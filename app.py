@@ -83,7 +83,7 @@ health_district = st.selectbox(
     ["Biyem-assi", "Etoug-Ebe", "Mvog-Betsi", "Other"]
 )
 
-category_fosa_manager = st.selectbox(
+category_fosa = st.selectbox(
     "Category of FOSA Manager",
     ["4", "5", "6"]
 )
@@ -121,7 +121,7 @@ if st.button("🔍 Predict Operational Capacity"):
     
     user_inputs = {
         "health_district": health_district,
-        "category_fosa_manager":category_fosa_manager,
+        "category_fosa":category_fosa,
         "gender_fosa_manager": gender_fosa_manager,
         "qualification_fosa_manager": qualification_fosa_manager,
         "childbirth_services": childbirth_services,
