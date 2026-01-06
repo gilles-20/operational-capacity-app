@@ -108,6 +108,10 @@ qualification_respondent = st.selectbox(
     ["IDE", "MD", "TMS", "Other"]
 )
 
+gender_respondent = st.radio(
+    "Gender of Respondent",
+    ["Male", "Feminine"]
+)
 st.subheader("Service Availability")
 
 def yes_no(label):
@@ -136,6 +140,7 @@ if st.button("🔍 Predict Operational Capacity"):
         "gender_fosa_manager": gender_fosa_manager,
         "qualification_fosa_manager": qualification_fosa_manager,
         "qualification_respondent":qualification_respondent,
+        "gender_respondent": gender_respondent,
         "childbirth_services": childbirth_services,
         "pmtct_services": pmtct_services,
         "prenatal_care_services": prenatal_care_services,
