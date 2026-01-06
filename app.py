@@ -8,8 +8,52 @@ import catboost
 import os
 from catboost import CatBoostClassifier, Pool
 import json
-st.write("Python:", sys.version)
-st.write("CatBoost:", catboost.__version__)
+#st.write("Python:", sys.version)
+#st.write("CatBoost:", catboost.__version__)
+st.markdown(
+    """
+    <style>
+    /* Main app background */
+    .stApp {
+        background: linear-gradient(
+            135deg,
+            #e3f2fd 0%,
+            #f1f8ff 40%,
+            #e8f5e9 100%
+        );
+    }
+
+    /* Make content containers look like cards */
+    .block-container {
+        background-color: rgba(255, 255, 255, 0.85);
+        padding: 2rem;
+        border-radius: 16px;
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Title styling */
+    h1, h2, h3 {
+        color: #0d47a1;
+    }
+
+    /* Buttons */
+    .stButton > button {
+        background-color: #1976d2;
+        color: white;
+        border-radius: 10px;
+        padding: 0.5rem 1.5rem;
+        font-size: 16px;
+        border: none;
+    }
+
+    .stButton > button:hover {
+        background-color: #0d47a1;
+        color: white;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 
 # ============================================================
@@ -200,3 +244,11 @@ st.divider()
 st.caption(
     "Model: CatBoost | Categorical features handled natively | Developed for academic research"
 )
+
+st.markdown("""
+    <hr>
+    <p style='text-align: center; font-size:16px;'>
+        <b>DISCLAIMER</b><br>
+         This application is without any warranty. No author accepts responsibility to anyone for the consequences of using it or for whether it serves any particular purpose or works at all
+    </p>
+""", unsafe_allow_html=True)
